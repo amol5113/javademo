@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:p="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans  
-http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
-http://www.springframework.org/schema/context  
-http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-3.0.xsd  
+http://www.springframework.org/schema/context   
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/mvc   
+http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
 	<context:component-scan
 		base-package="com.javatpoint"></context:component-scan>
+	<mvc:annotation-driven />
 
+	<mvc:resources location="/resources/**"
+		mapping="/resorces/**" />
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
-	
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
 	<!-- <bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property> 
@@ -30,7 +39,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<property name="driverClassName"
 			value="org.postgresql.Driver" />
 		<property name="url"
-			value="jdbc:postgresql://localhost:5433/ecgc" />
+			value="jdbc:postgresql://localhost:5433/ecgc?charSet=UTF-8" />
 		<property name="username" value="postgres" />
 		<property name="password" value="root" />
 		<!--<property name="socketTimeout" value="10"/> -->
@@ -54,19 +63,19 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="message" />
 	</bean>
- 
+
 	<bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
 		<property name="defaultLocale" value="en" />
 		<property name="cookieName" value="kscodesCookie" />
 		<property name="cookieMaxAge" value="3600" />
 	</bean>
- 
+
 	<bean id="localeChangeInterceptor"
 		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
 		<property name="paramName" value="language" />
 	</bean>
- 
+
 	<bean
 		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
 		<property name="interceptors">
@@ -75,10 +84,12 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 			</list>
 		</property>
 	</bean>
-	
 
-	
-	
-	
+<bean id="persistenceExceptionTranslationPostProcessor"
+   class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+
+
+
 
 </beans>

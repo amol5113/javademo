@@ -90,9 +90,9 @@ Current Locale : ${pageContext.response.locale}
 					<spr1:message code="message.selectgender" var="selectgender" />
 					<spr:option value="-" label="--${selectgender}--" />
 					<spr1:message code="message.male" var="male" />
-					<spr:option value="male" label="${male }" />
+					<spr:option value="${male }" label="${male }" />
 					<spr1:message code="message.female" var="female" />
-					<spr:option value="female" label="${female }" />
+					<spr:option value="${female }" label="${female }" />
 				</spr:select>
 			</div>
 			<spr:errors path="gender" cssClass="errorblock" class="form-control"/>
@@ -100,7 +100,7 @@ Current Locale : ${pageContext.response.locale}
 			<spr1:bind path="gender">
 									<input type="date" class="form-control" id="dateofbirth" max="2000-12-31"
 									name="dob" autocomplete="off"
-										placeholder="Dateofbirth">
+										>
 									</spr1:bind>
 			<div class="input-group m-4">
 				<spr1:message code="message.usertype" var="usertype" />
@@ -119,24 +119,26 @@ Current Locale : ${pageContext.response.locale}
 				${selectlang}
 				<spr1:message code="message.java" var="java" />
 				<spr:checkbox path="java" value="${java}" />
-				Java
+				${java}
 				<spr1:message code="message.c" var="c" />
 				<spr:checkbox path="c" value="${c}" />
-				C
+				${c}
 				<spr1:message code="message.cpp" var="cpp" />
 				<spr:checkbox path="cpp" value="${cpp}" />
-				C++
+				${cpp}
 				<spr1:message code="message.sql" var="sql" />
 				<spr:checkbox path="sql" value="${sql}" />
-				SQL
+				${sql}
 			</div>
 			<div class="input-group m-4">
+			<spr1:message code="message.comment" var="comment" />
 				<spr:textarea path="comment" rows="3" cols="20"
-					placeholder="Comment Here..." class="form-control" />
+					placeholder="${comment }" class="form-control" />
 			</div>
 			<spr:errors path="comment" cssClass="errorblock" class="form-control"/>
-
-
+			
+			<!--  <input type = "file" name = "file" size = "50" />
+ -->
 			<br>
 			<div class="input-group m-4">
 				<spr1:message code="message.register" var="register" />

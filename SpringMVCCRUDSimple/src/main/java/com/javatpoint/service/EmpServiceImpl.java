@@ -7,7 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.javatpoint.dao.IEmpDao;
+import com.javatpoint.dao.EmpDaoImpl;
+//import com.javatpoint.dao.IEmpDao;
 import com.javatpoint.model.Emp;
 
 @Service("bank_service")
@@ -21,7 +22,7 @@ public class EmpServiceImpl implements IEmpService {
 	}  
 
 	@Autowired
-	IEmpDao dao;
+	EmpDaoImpl dao;
 
 	public int save(Emp p) {
 		
